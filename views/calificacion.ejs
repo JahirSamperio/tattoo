@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles-logical.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap"
+      rel="stylesheet">
+    <title>Curso de Tatuajes - Primer Módulo</title>
+    <meta property="og:title" content="Curso de Tatuajes Profesional" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Primer Módulo: Introducción al Tatuaje" />
+    <meta property="og:url" content="https://leonidasesteban.github.io/curso-esencial-html-css/" />
+    <meta property="og:image" content="https://leonidasesteban.github.io/curso-esencial-html-css/images/dom.png" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <div>
+      <br>
+      <% if (autenticado) { %>
+        <form action="http://localhost:8080/signout" method="post">
+            <button type="submit" class="btn btn-outline-dark" style="display: inline-block; padding: 10px 20px; background-color: darkred; color: #fff; text-decoration: none; border-radius: 5px;">Cerrar sesión</button>
+        </form>
+        <% } else { %>
+            <form class="d-flex">
+                <a class="btn btn-outline-dark" href="http://localhost:8080/auth" style="display: inline-block; justify-content: flex-end; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;" type="submit">Iniciar sesión</a>
+                <a class="btn btn-outline-dark" href="http://localhost:8080/signup" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: #fff; text-decoration: none; border-radius: 5px;">Crear cuenta</a>
+            </form>
+        <% } %>
+    </div>
+    <main class="main">
+
+
+      <div class="wrapper">
+        <div class="main-content">
+          <h2 style="text-align: center;"><strong>Cuestionario: </strong><%= leccion.nombre %></h2>
+          <hr>
+          <div class="resultado">
+            <h3 class="resul-text" style="text-align: center;">Tu calificacion : <%= calificacion %> </h3>
+        </div>
+        <h3>Respuestas correctas</h4>
+          <section class="section-content">
+            <% preguntas.forEach((pregunta) => { %>
+                <div class="container-cursos">
+                    <h5><%= pregunta.pregunta %></h5>
+            
+                    <!-- Iterar sobre las opciones -->
+                    <% pregunta.opciones.forEach((opcion) => { %>
+                        <div class="container-cursos">
+                            <label>
+                                <%= opcion.opcion %>
+                            </label>
+                        </div>
+                        <br>
+                    <% }); %>
+                </div>
+            <% }); %>
+          <!-- Campo oculto para enviar el ID de la lección -->
+          <input type="hidden" name="id_leccion" value="<%= leccion.id_leccion %>">
+
+          <!-- Botón para calcular el resultado -->
+          <div style="display: flex; justify-content: center; margin-top: 3%;">
+            <a  class="continue-button" href="http://localhost:8080" style="background-color: green; align-items: center; padding: 15px; border-radius: 20%; text-decoration: none;">Regresar</a>
+          </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+    <footer>
+      <h1></h1>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
